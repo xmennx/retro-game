@@ -11,6 +11,30 @@
  * team.characters // [swordsman, bowman]
  * ```
  * */
-export default class Team {
-  // TODO: write your logic here
+ export default class Team {
+  constructor() {
+    this.members = new Set();
+  }
+
+  add(person) {
+    this.members.add(person);
+  }
+
+  addAll(...person) {
+    person.forEach((item) => {
+      this.members.add(item);
+    });
+  }
+
+  toArray() {
+    const arr = [];
+    this.members.forEach((item) => arr.push(item));
+    return arr;
+  }
+  delete(person) {
+    console.log("Удален", person);
+    this.members.delete(person);
+  }
 }
+
+console.log(Team);

@@ -23,38 +23,37 @@
  * ```
  * */
  export function calcTileType(index, boardSize) {
-  const row = Math.floor(index / boardSize);
-  const col = index % boardSize;
-
-  if (row === 0 && col === 0) {
-    return 'top-left';
-  } else if (row === 0 && col === boardSize - 1) {
-    return 'top-right';
-  } else if (row === 0) {
-    return 'top';
-  } else if (row === boardSize - 1 && col === 0) {
-    return 'bottom-left';
-  } else if (row === boardSize - 1 && col === boardSize - 1) {
-    return 'bottom-right';
-  } else if (row === boardSize - 1) {
-    return 'bottom';
-  } else if (col === 0) {
-    return 'left';
-  } else if (col === boardSize - 1) {
-    return 'right';
-  } else {
-    return 'center';
+  switch (true) {
+    case index === 0:
+      return "top-left";
+    case index === boardSize - 1:
+      return "top-right";
+    case index === boardSize * (boardSize - 1):
+      return "bottom-left";
+    case index === boardSize * boardSize - 1:
+      return "bottom-right";
+    case index > 0 && index < boardSize:
+      return "top";
+    case index % boardSize === 0:
+      return "left";
+    case (index + 1) % boardSize === 0:
+      return "right";
+    case index > boardSize * (boardSize - 1) &&
+      index < boardSize * boardSize - 1:
+      return "bottom";
+    default:
+      return "center";
   }
 }
 
 export function calcHealthLevel(health) {
   if (health < 15) {
-    return 'critical';
+    return "critical";
   }
 
   if (health < 50) {
-    return 'normal';
+    return "normal";
   }
 
-  return 'high';
+  return "high";
 }
